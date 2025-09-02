@@ -6,4 +6,6 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", recipe_views.home, name="home"),   # ✅ Clean home page with tabs
     path("recipes/", include("recipes.urls")), # ✅ Recipes app URLs
+    path('jobs/', include('jobs.urls')),  # include job app URLs
 ]
+

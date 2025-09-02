@@ -7,7 +7,6 @@
 </head>
 <body>
 <div class="container mt-4">
-
     <h1 class="text-center mb-4">📊 Offset ERP</h1>
 
     <!-- Tabs -->
@@ -19,6 +18,9 @@
             <button class="nav-link" id="recipes-tab" data-bs-toggle="tab" data-bs-target="#recipes" type="button" role="tab">Recipes</button>
         </li>
         <li class="nav-item" role="presentation">
+            <button class="nav-link" id="jobs-tab" data-bs-toggle="tab" data-bs-target="#jobs" type="button" role="tab">Jobs / Planning</button>
+        </li>
+        <li class="nav-item" role="presentation">
             <button class="nav-link" id="reports-tab" data-bs-toggle="tab" data-bs-target="#reports" type="button" role="tab">Reports</button>
         </li>
     </ul>
@@ -28,13 +30,20 @@
         <!-- Dashboard Tab -->
         <div class="tab-pane fade show active" id="dashboard" role="tabpanel">
             <h3>Dashboard Overview</h3>
-            <p>Welcome to Offset ERP. Choose a tab to manage recipes or view reports.</p>
+            <p>Welcome to Offset ERP. Choose a tab to manage recipes, jobs, or view reports.</p>
+
         </div>
 
         <!-- Recipes Tab -->
         <div class="tab-pane fade" id="recipes" role="tabpanel">
             <h3>Recipes</h3>
-            <a href="{% url 'sku-list' %}" class="btn btn-primary">Manage Recipes</a>
+            <a href="{% url 'sku-list' %}" class="btn btn-primary">Manage Recipes</a> <!-- Button linking to Manage Recipes -->
+        </div>
+
+        <!-- Jobs Tab (Job Planning) -->
+        <div class="tab-pane fade" id="jobs" role="tabpanel">
+            <h3>Jobs / Planning</h3>
+            <a href="{% url 'job-list' %}" class="btn btn-success mb-3">Manage Jobs</a> <!-- Job Management Button -->
         </div>
 
         <!-- Reports Tab -->
@@ -45,6 +54,9 @@
     </div>
 </div>
 
+<!-- Bootstrap & jQuery -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </body>
 </html>
