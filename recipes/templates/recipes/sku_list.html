@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3>Recipe List</h3>
+
+<!-- Search Form -->
+<form method="get" action="" class="mb-3 d-flex">
+    <input type="text" name="q" class="form-control me-2" placeholder="Search by SKU name..." value="{{ query }}">
+    <button type="submit" class="btn btn-sm btn-primary">Search</button>
+</form>
+
+<div class="mb-3">
+    <a href="{% url 'sku-create' %}" class="btn btn-primary">➕ Add New Recipe</a>
+    <a href="{% url 'bulk-upload' %}" class="btn btn-secondary">⬆️ Bulk Upload</a>
+</div>
+
+<!-- Bulk Actions Form -->
+<form method="post" action="{% url 'bulk-actions' %}">
+    {% csrf_token %}
+    <div class="mb-2">
+        <button type="submit" name="action" value="download" class="btn btn-success btn-sm">⬇️ Download Selected</button>
+        <button type="submit" name="action" value="delete" class="btn btn-danger btn-sm">🗑️ Delete Selected</button>
+    </div>
+
+    <table class="table table-bordered table-hover align-middle">
+        <thead class="table-dark">
+            <tr>
+                <th><input type="checkbox" id="select-all"></th>
+                <th>SKU Code</th>
+                <th>SKU Name</th>
+                <th>Material</th>
+                <th>Application</th>
+                <th>1-Up (W × H)</th>
+                <th>Print Sheet (W × H)</th>
+                <th>UPS</th>
+                <th>Purchase Sheet (W × H)</th>
+                <th>Purchase UPS</th>
+                <th>Created At</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for sku in skus %}
+            <tr>
+                <td><input type="checkbox" name="selected_skus" value="{{ sku.pk }}"></td>
+                <td>{{ sku.sku_code }}</td>
+                <td>{{ sku.sku_name }}</td>
+                <td>{{ sku.material_type }}</td>
+                <td>{{ sku.application_type }}</td>
+                <td>{{ sku.one_up_width }} × {{ sku.one_up_height }}</td>
+                <td>
+                    {% if sku.print_sheet_width and sku.print_sheet_height %}
+                        {{ sku.print_sheet_width }} × {{ sku.print_sheet_height }}
+                    {% else %}
+                        <span class="text-muted">—</span>
+                    {% endif %}
+                </td>
+                <td>{{ sku.ups }}</td>
+                <td>
+                    {% if sku.purchase_sheet_width and sku.purchase_sheet_height %}
+                        {{ sku.purchase_sheet_width }} × {{ sku.purchase_sheet_height }}
+                    {% else %}
+                        <span class="text-muted">—</span>
+                    {% endif %}
+                </td>
+                <td>{{ sku.purchase_ups }}</td>
+                <td>{{ sku.created_at|date:"Y-m-d H:i" }}</td>
+                <td>
+                    <a href="{% url 'sku-edit' sku.pk %}" class="btn btn-sm btn-warning">✏️ Edit</a>
+                    <a href="{% url 'sku-delete' sku.pk %}" class="btn btn-sm btn-danger">🗑️ Delete</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="12" class="text-center text-muted">No recipes found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</form>
+
+<!-- Select All Script -->
+<script>
+document.getElementById("select-all").addEventListener("click", function() {
+    const checkboxes = document.querySelectorAll("input[name='selected_skus']");
+    for (const checkbox of checkboxes) {
+        checkbox.checked = this.checked;
+    }
+});
+</script>
+
+{% endblock %}

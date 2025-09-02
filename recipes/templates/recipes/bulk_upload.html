@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3>Bulk Upload Recipes</h3>
+
+<!-- Display messages -->
+{% if messages %}
+  <ul class="list-group mb-3">
+    {% for message in messages %}
+      <li class="list-group-item
+                 {% if message.tags == 'error' %}list-group-item-danger{% endif %}
+                 {% if message.tags == 'success' %}list-group-item-success{% endif %}">
+        {{ message }}
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Upload</button>
+</form>
+
+{% if error_file %}
+    <a href="{% url 'download-error-file' %}" class="btn btn-warning mt-3">Download Error File</a>
+{% endif %}
+
+<hr>
+<div>
+    <p>Need a template? Download:</p>
+    <a href="{% url 'download-sample-csv' %}" class="btn btn-success">Sample CSV</a>
+    <a href="{% url 'download-sample-excel' %}" class="btn btn-info">Sample Excel</a>
+</div>
+{% endblock %}

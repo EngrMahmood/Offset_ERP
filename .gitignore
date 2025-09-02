@@ -1,0 +1,49 @@
+# Python compiled files
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Virtual environment
+venv/
+env/
+ENV/
+
+# Django files
+*.sqlite3
+/staticfiles/
+media/
+*.log
+
+# Environment variables
+*.env
+
+# IDEs and editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Byte-compiled / optimized / DLL files
+*.py[cod]
+*$py.class
+
+# Coverage reports
+.coverage
+htmlcov/
+*.cover
+*.py,cover
+
+# Pytest cache
+.pytest_cache/
+
+# MyPy cache
+.mypy_cache/
+
+# Django migrations (optional: include if you want to ignore them)
+**/migrations/*.py
+!**/migrations/__init__.py
