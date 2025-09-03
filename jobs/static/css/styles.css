@@ -1,0 +1,46 @@
+/* styles.css */
+
+/* Form container */
+.form-container {
+    background-color: #f8f9fa;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+}
+
+/* Form heading */
+.form-heading {
+    font-size: 1.5rem;
+    color: #343a40;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Label styling */
+.form-label {
+    font-weight: bold;
+}
+
+/* Form group spacing */
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* Submit button styling */
+.btn-custom {
+    background-color: #28a745;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+/* Hover effect for button */
+.btn-custom:hover {
+    background-color: #218838;
+}
+
+/* Form input styling */
+.form-control {
+    border-radius: 5px;
+}

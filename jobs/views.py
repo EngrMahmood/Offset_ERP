@@ -125,3 +125,23 @@ def job_delete(request, pk):
     job = get_object_or_404(Job, pk=pk)
     job.delete()  # Delete the job
     return redirect('job-list')  # Redirect to the job list after successful deletion
+
+
+
+def get_last_job_code(request):
+    # Extract the month-year from the request
+    month_year = request.GET.get('month_year', '')
+    
+    # Fetch the last job created in this month-year
+    try:
+        last_job = Job.objects.filter(job_name__contains=month_year).last()
+        
+        if last_job:
+            last_job_code = last_job.job_name  # This is the last JC# for the month-year
+        else:
+            last_job_code = None
+        
+        return JsonResponse({'last_job_code': last_job_code})
+
+    except Job.DoesNotExist:
+        return JsonResponse({'error': 'No jobs found for this month'}, status=404)

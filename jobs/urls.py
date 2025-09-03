@@ -8,5 +8,6 @@ urlpatterns = [
     path('fetch-recipe/', views.fetch_recipe, name='fetch_recipe'),  # Fetch recipe via SKU
     path('jobs/<int:pk>/edit/', views.job_edit, name='job-edit'),  # Edit job
     path('jobs/<int:pk>/delete/', views.job_delete, name='job-delete'),  # Delete job
+    path('get_last_job_code/', views.get_last_job_code, name='get_last_job_code'), # Last job card
 ]
 
